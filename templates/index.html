@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Productos | Administrador{% endblock %}
+
+{% block content %}
+<section class="toolbar">
+  <a class="button" href="{{ url_for('create_product') }}">Nuevo producto</a>
+</section>
+
+<section class="table-card">
+  {% if products %}
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>SKU</th>
+          <th>Nombre</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Impuesto</th>
+          <th>Stock</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.sku }}</td>
+            <td>
+              <strong>{{ product.name }}</strong>
+              {% if product.description %}
+                <p class="muted">{{ product.description }}</p>
+              {% endif %}
+            </td>
+            <td>{{ product.category or 'Sin categoría' }}</td>
+            <td>${{ '%.2f'|format(product.price) }}</td>
+            <td>{{ '%.2f'|format(product.tax) }}%</td>
+            <td>{{ product.stock }}</td>
+            <td>
+              <div class="actions">
+                <a class="button ghost" href="{{ url_for('edit_product', product_id=product.id) }}">Editar</a>
+                <form method="POST" action="{{ url_for('delete_product', product_id=product.id) }}" onsubmit="return confirm('¿Eliminar este producto?');">
+                  <button class="button danger" type="submit">Eliminar</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="empty-state">Aún no hay productos. Crea el primero para comenzar.</p>
+  {% endif %}
+</section>
+{% endblock %}
