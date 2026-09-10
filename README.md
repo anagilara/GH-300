@@ -1,11 +1,12 @@
-# Administrador de Productos (Python + Flask)
+# Administrador de Clientes (Python + Flask)
 
-Aplicación web para administrar productos con operaciones CRUD:
+Aplicación web para administrar clientes con operaciones CRUD:
 
-- Crear productos
-- Listar productos
-- Editar productos
-- Eliminar productos
+- Crear clientes
+- Listar clientes
+- Ver detalle de clientes
+- Editar clientes
+- Eliminar clientes
 
 Incluye persistencia en SQLite y una interfaz web responsiva.
 
@@ -41,6 +42,6 @@ La app quedará disponible en:
 ## Estructura principal
 
 - `app.py`: lógica del servidor y rutas CRUD.
-- `templates/`: vistas HTML (listado y formulario).
+- `templates/`: vistas HTML (listado, detalle y formulario).
 - `static/styles.css`: estilos de la interfaz.
 - `products.db`: base de datos SQLite (se crea automáticamente al iniciar).

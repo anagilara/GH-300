@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% if mode == 'edit' %}
-  {% set page_title = 'Editar producto' %}
+  {% set page_title = 'Editar cliente' %}
 {% else %}
-  {% set page_title = 'Nuevo producto' %}
+  {% set page_title = 'Nuevo cliente' %}
 {% endif %}
 
 {% block title %}{{ page_title }} | Administrador{% endblock %}
@@ -13,43 +13,31 @@
   <h2>{{ page_title }}</h2>
   <form method="POST" class="product-form">
     <label>
-      SKU
-      <input type="text" name="sku" value="{{ product.sku or '' }}" required maxlength="64" />
-    </label>
-
-    <label>
       Nombre
-      <input type="text" name="name" value="{{ product.name or '' }}" required maxlength="120" />
+      <input type="text" name="name" value="{{ client.name or '' }}" required maxlength="120" />
     </label>
 
     <label>
-      Descripción
-      <textarea name="description" rows="3" maxlength="500">{{ product.description or '' }}</textarea>
-    </label>
-
-    <label>
-      Categoría
-      <input type="text" name="category" value="{{ product.category or '' }}" maxlength="80" />
+      Correo electrónico
+      <input type="email" name="email" value="{{ client.email or '' }}" required maxlength="160" />
     </label>
 
     <div class="grid-2">
       <label>
-        Precio
-        <input type="number" name="price" value="{{ product.price or '' }}" min="0" step="0.01" required />
+        Teléfono
+        <input type="text" name="phone" value="{{ client.phone or '' }}" maxlength="40" />
       </label>
 
       <label>
-        Impuesto (%)
-        <input type="number" name="tax" value="{{ product.tax or '0' }}" min="0" max="100" step="0.01" required />
+        Empresa
+        <input type="text" name="company" value="{{ client.company or '' }}" maxlength="120" />
       </label>
     </div>
 
-    <div class="grid-2">
-      <label>
-        Stock
-        <input type="number" name="stock" value="{{ product.stock or '' }}" min="0" step="1" required />
-      </label>
-    </div>
+    <label>
+      Notas
+      <textarea name="notes" rows="4" maxlength="500">{{ client.notes or '' }}</textarea>
+    </label>
 
     <div class="actions">
       <button class="button" type="submit">Guardar</button>
